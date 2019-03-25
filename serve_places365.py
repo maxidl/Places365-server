@@ -18,6 +18,7 @@ import aiohttp
 import asyncio
 from collections import OrderedDict
 import numpy as np
+import pandas as pd
 
 # TODO: configure architecture to use, host and port
 host = 'localhost'
@@ -56,6 +57,12 @@ with open(file_name) as class_file:
     for line in class_file:
         classes.append(line.strip().split(' ')[0][3:])
 classes = tuple(classes)
+
+scene_hierarchy_file = 'Scene_hierarchy_Places365.csv'
+scene_hierarchy_lvl2 = pd.read_csv(scene_hierarchy_file, header=1, sep=',', index_col='category').drop(
+    labels=['indoor', 'outdoor, natural', 'outdoor, man-made'], axis=1)
+scene_hierarchy_lvl2.index = scene_hierarchy_lvl2.index.map(lambda s: s.replace("'", "")[3:])
+
 print(f'Loaded places365 CNN with {arch} architecture.')
 
 
@@ -83,7 +90,10 @@ def predict_image_from_bytes(bytes):
     probs, idx = h_x.sort(0, True)
     out = OrderedDict()
     for i in range(0, 5):
-        out[classes[idx[i]]] = np.round(probs[i].detach().item(), 3)
+        label = classes[idx[i]]
+        lvl2_label = list(scene_hierarchy_lvl2.loc[label][scene_hierarchy_lvl2.loc[label] == 1].index)
+        out_label = f'{label}, {lvl2_label}'
+        out[out_label] = np.round(probs[i].detach().item(), 3)
     # print(out)
     return JSONResponse(out)
 
