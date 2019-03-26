@@ -14,8 +14,8 @@ dependencies:
   - asyncpg=0.18.3=py37h14c3975_1000
   - attrs=19.1.0=py_0
   - blas=1.0=mkl
-  - ca-certificates=2018.11.29=ha4d7672_0
-  - certifi=2018.11.29=py37_1000
+  - ca-certificates=2019.1.23=0
+  - certifi=2019.3.9=py37_0
   - cffi=1.12.1=py37h2e261b9_0
   - chardet=3.0.4=py37_1003
   - click=7.0=py_0
@@ -51,7 +51,8 @@ dependencies:
   - numpy=1.16.2=py37h7e9f1db_0
   - numpy-base=1.16.2=py37hde5b4d6_0
   - olefile=0.46=py37_0
-  - openssl=1.1.1b=h14c3975_1
+  - openssl=1.1.1b=h7b6447c_1
+  - pandas=0.24.2=py37he6710b0_0
   - pillow=5.4.1=py37h34e0f95_0
   - pip=19.0.3=py37_0
   - promise=2.2.1=py_0
@@ -64,6 +65,7 @@ dependencies:
   - python-dateutil=2.8.0=py_0
   - python-multipart=0.0.5=py_0
   - pytorch=0.4.1=py37_py36_py35_py27__9.0.176_7.1.2_2
+  - pytz=2018.9=py37_0
   - pyyaml=3.13=py37h14c3975_1001
   - readline=7.0=h7b6447c_5
   - requests=2.21.0=py37_1000
